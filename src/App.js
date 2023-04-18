@@ -4,6 +4,7 @@ import Register from "./Components/Register/Register";
 import Reset from "./Components/Reset/Reset";
 import Dashboard from "./Components/Dashbord/Dashbord";
 import HomePage from "./Components/Homepage/HomePage.jsx";
+import PageNotFound from "./Components/PageNotFound.jsx";
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/register" element={<Register />} />
         <Route exact path="/reset" element={<Reset />} />
         <Route exact path="/dashboard" element={<Dashboard />} />
+        <Route path="*" element={<PageNotFound />} />
       </Routes>
     </div>
   );
