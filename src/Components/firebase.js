@@ -21,7 +21,7 @@ import { getStorage} from "firebase/storage";
     
 // ************ Firebase Configuration ********************************************************************
 const firebaseConfig = {
-    apiKey: "AIzaSyDBwdGTi5XW63P6g5h4SpXhj-myh40l518",
+    apiKey: process.env.apiKey,
     authDomain: "auth-effa7.firebaseapp.com",
     projectId: "auth-effa7",
     storageBucket: "auth-effa7.appspot.com",
