@@ -22,14 +22,14 @@ function Register() {
   // eslint-disable-next-line no-unused-vars
   const [user, loading, error] = useAuthState(auth);
   
-  const history = useNavigate();
+  const navigate = useNavigate();
 
   function handleChange(event) {
         setFile(event.target.files[0]);
       }
 
   const handleUpload = ()=>{
-    
+
     if (!file){
       console.log("plz upload the file");
     }
@@ -49,18 +49,17 @@ function Register() {
                   // download url
                   getDownloadURL(uploadTask.snapshot.ref).then((url) => {
                 
+                  // Stroring data in  firebase database
                   registerWithEmailAndPassword(name, email, password, phoneNumber,url)
 
-               });
-               
+               });  
             }
         );
-  
   }
 
   useEffect(() => {
     if (loading) return;
-    if (user) history("/dashboard");
+    if (user) navigate("/dashboard");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
 

@@ -3,8 +3,8 @@ import React from "react";
 import "./Homepage.css";
 import { useNavigate } from "react-router-dom";
 import { motion, useMotionValue, useTransform } from "framer-motion";
-import logo from "./logo.png";
-import boy from "./boy.png";
+import logo from "./Assets/logo.png";
+import boy from "./Assets/boy.png";
 const HomePage = () => {
 
   const navigate = useNavigate()
@@ -34,7 +34,6 @@ const HomePage = () => {
             <button type="submit" onClick={() => {navigate("/register")}}>SignUp</button>
         </div>
 
-        
 
         <div className="image_container">
           <motion.div
