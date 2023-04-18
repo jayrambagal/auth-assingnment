@@ -1,21 +1,25 @@
 import { initializeApp } from "firebase/app";
+
 import {GoogleAuthProvider,
-    getAuth,signInWithPopup,
-    signInWithEmailAndPassword,
-    createUserWithEmailAndPassword,
-    sendPasswordResetEmail,
-    signOut,
-} from "firebase/auth";
+        getAuth,signInWithPopup,
+        signInWithEmailAndPassword,
+        createUserWithEmailAndPassword,
+        sendPasswordResetEmail,
+        signOut,
+      } from "firebase/auth";
 
 import {getFirestore,
-    query,
-    getDocs,
-    collection,
-    where,
-    addDoc,
-} from "firebase/firestore"
+        query,
+        getDocs,
+        collection,
+        where,
+        addDoc,
+      } from "firebase/firestore"
+
+import { getStorage} from "firebase/storage";
+
     
-// ************ Firebase Configuration *********************************
+// ************ Firebase Configuration ********************************************************************
 const firebaseConfig = {
     apiKey: "AIzaSyDBwdGTi5XW63P6g5h4SpXhj-myh40l518",
     authDomain: "auth-effa7.firebaseapp.com",
@@ -29,11 +33,13 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
+const storage = getStorage(app)
 
 
 //**************** Register with name,email and password *****************************
 
-const registerWithEmailAndPassword = async (name, email, password) => {
+const registerWithEmailAndPassword = async (name, email, password,phoneNumber,url) => {
+  console.log("inregister firebase", url);
   try {
     const res = await createUserWithEmailAndPassword(auth, email, password);
     const user = res.user;
@@ -42,12 +48,15 @@ const registerWithEmailAndPassword = async (name, email, password) => {
       name,
       authProvider: "local",
       email,
+      phoneNumber,
+      url,
     });
   } catch (err) {
     console.error(err);
     alert(err.message);
   }
 };
+
 
 
 // *************** SignIn With eamil and password *************************
@@ -69,12 +78,16 @@ const signInWithGoogle = async () => {
     const user = res.user;
     const q = query(collection(db, "users"), where("uid", "==", user.uid));
     const docs = await getDocs(q);
+    console.log(user);
     if (docs.docs.length === 0) {
       await addDoc(collection(db, "users"), {
         uid: user.uid,
         name: user.displayName,
         authProvider: "google",
         email: user.email,
+        phoneNumber:null,
+        url: user.photoURL
+        
       });
     }
   } catch (err) {
@@ -96,12 +109,13 @@ const sendPasswordReset = async (email) => {
     }
   };
 
+
 // *************** Logout functionality  ********************
   const logout = () => {
     signOut(auth);
   };
 
-  
+
 
 //   ********** Exporting all the functions of authentication *********************888
   export {
@@ -112,4 +126,5 @@ const sendPasswordReset = async (email) => {
     registerWithEmailAndPassword,
     sendPasswordReset,
     logout,
+    storage
   };

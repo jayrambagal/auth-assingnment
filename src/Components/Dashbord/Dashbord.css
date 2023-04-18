@@ -6,6 +6,8 @@
     justify-content: center;
   }
   .dashboard__container {
+    width: 400px;
+    height: 400px;
     display: flex;
     flex-direction: column;
     text-align: center;
