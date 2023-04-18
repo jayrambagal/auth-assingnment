@@ -110,6 +110,9 @@ function Register() {
         <div>
           Already have an account? <Link to="/login">Login</Link> now.
         </div>
+        <div>
+          Go to? <Link to="/">HomePage</Link>.
+        </div>
       </div>
     </div>
   );

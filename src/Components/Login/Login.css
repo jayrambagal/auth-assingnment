@@ -31,3 +31,7 @@
   .login div {
     margin-top: 7px;
   }
+  .links{
+    display: flex;
+    justify-content: left;
+  }
