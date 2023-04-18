@@ -21,13 +21,13 @@ import { getStorage} from "firebase/storage";
     
 // ************ Firebase Configuration ********************************************************************
 const firebaseConfig = {
-    apiKey: process.env.apiKey,
-    authDomain:process.env.authDomain ,
-    projectId:process.env.projectId ,
-    storageBucket:process.env.storageBucket ,
-    messagingSenderId: process.env.measurementId,
-    appId:process.env.appId ,
-    measurementId:process.env.measurementId
+    apiKey: "AIzaSyDBwdGTi5XW63P6g5h4SpXhj-myh40l518",
+    authDomain: "auth-effa7.firebaseapp.com",
+    projectId: "auth-effa7",
+    storageBucket: "auth-effa7.appspot.com",
+    messagingSenderId: "1075153286731",
+    appId: "1:1075153286731:web:d41771ce436fc39382ffce",
+    measurementId: "G-156VXMM1HY"
   };
 
 const app = initializeApp(firebaseConfig);
