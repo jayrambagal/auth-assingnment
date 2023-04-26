@@ -12,7 +12,6 @@ https://user-images.githubusercontent.com/94613732/232962783-46a4e274-b99b-4888-
 
 ### Used Dependancies
 
-  1. firebase 
   2. framer-motion
   3. react-router-dom
   
