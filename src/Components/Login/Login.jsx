@@ -20,6 +20,7 @@ function Login() {
     if (user) navigate("/dashboard");
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [user, loading]);
+  
   return (
     <div className="login">
       <div className="login__container">
@@ -51,9 +52,6 @@ function Login() {
         </div>
         <div className="links">
           Don't have an account? <Link to="/register">Register</Link>
-        </div>
-        <div className="links">
-          Go to? <Link to="/">HomePage</Link>.
         </div>
       </div>
     </div>

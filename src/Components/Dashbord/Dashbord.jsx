@@ -8,11 +8,16 @@ import { query, collection, getDocs, where } from "firebase/firestore";
 function Dashboard() {
   const [user, loading, error] = useAuthState(auth);
   console.log(error);
-  const [name, setName] = useState("");
-  const [phoneNo, setPhone] = useState('');
-  const [profile ,setProfile] = useState('')
 
   const navigate = useNavigate();
+
+  const [image, setImage] = useState(null)
+
+const onImageChange = (event) => {
+ if (event.target.files && event.target.files[0]) {
+   setImage(URL.createObjectURL(event.target.files[0]));
+ }
+}
   
   const fetchUserName = async () => {
     try {
@@ -20,9 +25,6 @@ function Dashboard() {
       const doc = await getDocs(q);
       const data = doc.docs[0].data();
       console.log(data);
-      setName(data.name);
-      setPhone(data.phoneNumber)
-      setProfile(data.url)
       
     } catch (err) {
       console.error(err);
@@ -38,20 +40,23 @@ function Dashboard() {
 
   return (
     <div className="dashboard">
-       <div className="dashboard__container">
-          <h2>User Profle</h2>
-          <div>
-          <img style={{height:"150px" ,width:"150px"}} src={profile} alt="profile" />
-          </div>
-         <div>{name}</div>
-         <div>{user?.email}</div>
-         <div>{phoneNo}</div>
-        
 
-         <button className="dashboard__btn" onClick={logout}>
+<div className="dashboard">
+       <div className="dashboard__container">
+       <input type="file" onChange={onImageChange} className="filetype" />
+
+       {image !==[] ? 
+       <div style={{width:"170px" ,height:"270px"}}>
+        <img  src ={image} alt="" style={{width:"100%" ,height:"100%"}} />
+       </div> : 
+       <></>
+       }
+         
+       </div>
+       <button className="dashboard__btn" onClick={logout}>
           Logout
          </button>
-       </div>
+     </div>
      </div>
   );
 }

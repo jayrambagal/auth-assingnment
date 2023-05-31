@@ -48,7 +48,7 @@ function Register() {
               () => {
                   // download url
                   getDownloadURL(uploadTask.snapshot.ref).then((url) => {
-                
+                    
                   // Stroring data in  firebase database
                   registerWithEmailAndPassword(name, email, password, phoneNumber,url)
 
@@ -108,11 +108,9 @@ function Register() {
           Register with Google
         </button>
         <div>
-          Already have an account? <Link to="/login">Login</Link> now.
+          Already have an account? <Link to="/">Login</Link> now.
         </div>
-        <div>
-          Go to? <Link to="/">HomePage</Link>.
-        </div>
+        
       </div>
     </div>
   );
